@@ -1,0 +1,16 @@
+name: tests
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv run --no-project --python 3.12 --with pytest pytest -q
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Render the first 5 customers
+        run: |
+          npm ci
+          LIMIT=5 node render.js
+          test "$(ls out/pngs | wc -l)" -ge 20

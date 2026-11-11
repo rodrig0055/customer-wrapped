@@ -1,0 +1,11 @@
+{
+  "name": "customer-wrapped",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "render": "node render.js"
+  },
+  "dependencies": {
+    "puppeteer": "^24.10.0"
+  }
+}
